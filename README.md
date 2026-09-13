@@ -12,7 +12,7 @@ https://otakudesu.media
 
 ```sh
 # clone repo
-git clone https://github.com/MastayY/otakudesu-scraping.git
+git clone https://github.com/andrenaskleng3-svg/akira
 
 # masuk folder
 cd otakudesu-scraping
