@@ -129,6 +129,7 @@ section{margin:34px 0}
 .day h3{margin:0 0 10px;font-size:14px;color:var(--a3);letter-spacing:.06em;text-transform:uppercase}
 .day li{list-style:none;font-size:13px;color:var(--dim);padding:5px 0;border-bottom:1px dashed rgba(255,255,255,.07)}
 .pager{display:flex;flex-wrap:wrap;gap:9px;justify-content:center;margin:26px 0 10px}
+.list-pager{margin-bottom:0}
 
 .sk{border-radius:var(--r);aspect-ratio:2/3;background:linear-gradient(100deg,#111220 30%,#1b1d2e 50%,#111220 70%);
   background-size:250% 100%;animation:sh 1.3s linear infinite}
@@ -144,7 +145,12 @@ section{margin:34px 0}
 .tabs a{flex:1;text-align:center;font-size:10.5px;color:var(--dim);padding:7px 0;border-radius:14px;letter-spacing:.06em}
 .tabs a b{display:block;font-size:16px;font-weight:400;line-height:1.3}
 .tabs a.on{color:#08080e;background:var(--grad);font-weight:700}
-@media(max-width:860px){.tabs{display:flex}main{padding-bottom:calc(104px + env(safe-area-inset-bottom))}footer{padding-bottom:calc(96px + env(safe-area-inset-bottom))}}
+@media(max-width:860px){
+  .tabs{display:flex;bottom:calc(12px + env(safe-area-inset-bottom))}
+  main{padding-bottom:calc(150px + env(safe-area-inset-bottom))}
+  .list-pager{margin-bottom:calc(110px + env(safe-area-inset-bottom))}
+  footer{padding-bottom:calc(120px + env(safe-area-inset-bottom))}
+}
 .tabs a b{font-size:15px}
 .hist{display:grid;gap:10px}
 .hitem{display:flex;gap:12px;align-items:center;padding:10px;border:1px solid var(--line);background:var(--panel);border-radius:16px}
@@ -259,7 +265,7 @@ async function viewList(kind,page){
     const p = +page||1;
     app.innerHTML = `<section><div class="head"><h2>${kind==="ongoing"?"Sedang <b>Tayang</b>":"Sudah <b>Tamat</b>"}</h2><div class="line"></div><span class="more">Halaman ${p}</span></div>
       ${(d.items&&d.items.length)?cardsTpl(d.items):`<div class="empty">Genre <b>${esc(id)}</b> belum mengembalikan data. Coba genre lain atau halaman sebelumnya.</div>`}
-      <div class="pager">${p>1?`<a class="btn" href="#/${kind}/${p-1}">← Sebelumnya</a>`:""}<a class="btn main" href="#/${kind}/${p+1}">Berikutnya →</a></div></section>`;
+      <div class="pager list-pager">${p>1?`<a class="btn" href="#/${kind}/${p-1}">← Sebelumnya</a>`:""}<a class="btn main" href="#/${kind}/${p+1}">Berikutnya →</a></div></section>`;
     scrollTo({top:0});
   }catch(e){app.innerHTML=err(e.message)}
 }
@@ -289,7 +295,7 @@ async function viewGenre(id,page){
     const p=+page||1;
     app.innerHTML = `<section><div class="head"><h2>Genre <b>${esc(id)}</b></h2><div class="line"></div><span class="more">Halaman ${p}</span></div>
       ${(d.items&&d.items.length)?cardsTpl(d.items):`<div class="empty">Genre <b>${esc(id)}</b> belum mengembalikan data. Coba genre lain atau halaman sebelumnya.</div>`}
-      <div class="pager">${p>1?`<a class="btn" href="#/genre/${encodeURIComponent(id)}/${p-1}">← Sebelumnya</a>`:""}<a class="btn main" href="#/genre/${encodeURIComponent(id)}/${p+1}">Berikutnya →</a></div></section>`;
+      <div class="pager list-pager">${p>1?`<a class="btn" href="#/genre/${encodeURIComponent(id)}/${p-1}">← Sebelumnya</a>`:""}<a class="btn main" href="#/genre/${encodeURIComponent(id)}/${p+1}">Berikutnya →</a></div></section>`;
   }catch(e){app.innerHTML=err(e.message)}
 }
 
