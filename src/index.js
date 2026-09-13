@@ -18,7 +18,7 @@ app.use('/api', router)
 
 app.get('/api', (req, res) => {
   res.json({
-    author: 'Xiaozie_Modz',
+    author: 'Rafly',
     routes: {
       home: '/api/home',
       schedule: '/api/schedule',
